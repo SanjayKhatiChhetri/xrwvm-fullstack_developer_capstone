@@ -1,0 +1,83 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <style>
+        .main-container {
+            width: 80%;
+            margin: auto;
+            margin-top: 5%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .divider {
+            border-bottom: 1px solid #ddd;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .divider img {
+            width: 50px;
+            height: 50px;
+        }
+        .bottom-container {
+            display: flex;
+            justify-content: space-between;
+            border-top: 2px solid #000;
+            padding-top: 20px;
+        }
+        .contact-info, .customer-support {
+            width: 45%;
+        }
+        .customer-support img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="main-container">
+        <h1>Contact Us</h1>
+        <div class="divider">
+            <img style="height: 180px; width: 200px;" src="https://i.postimg.cc/3RH4FbF8/portrait-2899779-1280.png" alt="Divider Image">
+        </div>
+        <div class="bottom-container">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p><strong>Address:</strong> 1234 Car Street, Auto City, NA 56789</p>
+                <p><strong>Phone:</strong> (123) 456-7890</p>
+                <p><strong>Email:</strong> contact@bestcars.com</p>
+            </div>
+            <div class="customer-support">
+                <h2>Customer Support</h2>
+                <img style="height: 180px; width: 200px;" src="https://i.postimg.cc/50qH7qsw/woman-3567600-1280.jpg" alt="Customer Support Icon">
+                <p>Our customer support team is here to help you with any inquiries or issues you may have. Feel free to reach out to us!</p>
+            </div>
+        </div>
+    </div>
+</html>
