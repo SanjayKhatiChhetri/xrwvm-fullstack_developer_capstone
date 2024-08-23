@@ -1,7 +1,10 @@
 # Uncomment the imports below before you add the function code
-# import requests
+import requests
 import os
 from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -13,19 +16,19 @@ sentiment_analyzer_url = os.getenv(
 
 # def get_request(endpoint, **kwargs):
 # Add code for get requests to back end
+
 def get_request(endpoint, **kwargs):
-    params = ""
-    if(kwargs):
-        for key,value in kwargs.items():
-            params=params+key+"="+value+"&"
+    params = "&".join(f"{key}={value}" for key, value in kwargs.items())
+    request_url = f"{backend_url}{endpoint}?{params}"
 
-    request_url = backend_url+endpoint+"?"+params
-
-    print("GET from {} ".format(request_url))
+    logger.info(f"GET request to {request_url}")
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
         return response.json()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Network exception occurred: {str(e)}")
+        return None
     except:
         # If any error occurs
         print("Network exception occurred")
@@ -34,14 +37,15 @@ def get_request(endpoint, **kwargs):
 # request_url = sentiment_analyzer_url+"analyze/"+text
 # Add code for retrieving sentiments
 def analyze_review_sentiments(text):
-    request_url = sentiment_analyzer_url+"analyze/"+text
+    request_url = f"{sentiment_analyzer_url}analyze/{text}"
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
+        response.raise_for_status()  # This will raise an exception for HTTP errors
         return response.json()
-    except Exception as err:
-        print(f"Unexpected {err=}, {type(err)=}")
-        print("Network exception occurred")
+    except requests.exceptions.RequestException as err:
+        logger.error(f"Error analyzing sentiment: {err}")
+        return None
 
 # def post_review(data_dict):
 # Add code for posting review
