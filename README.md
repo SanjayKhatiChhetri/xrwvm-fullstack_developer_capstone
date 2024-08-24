@@ -132,6 +132,35 @@ npm install
 npm run build
 ```
 
+### Build and Push Docker Image to IBM Cloud Image Registry (ICR)
+
+1. First, export your SN Labs namespace and print it on the console:
+```sh
+MY_NAMESPACE=$(ibmcloud cr namespaces | grep sn-labs-)
+echo $MY_NAMESPACE
+```
+2. Perform a Docker build with the Dockerfile in the current directory:
+```
+docker push us.icr.io/$MY_NAMESPACE/dealership
+```
+
+3.Push the Docker Image to the Container Registry
+```
+docker push us.icr.io/$MY_NAMESPACE/dealership
+```
+
+### Deploy the application in Kubernetes cluster
+1. Create the deployment using the following command and your deployment file:
+```
+kubectl apply -f deployment.yaml
+```
+*Normally, we would add a service to our deployment; however, we will use port-forwarding in this environment to see the running application.*
+
+```
+kubectl port-forward deployment.apps/dealership 8000:8000
+```
+*Note: If you see any errors, please wait for some time and run the command again.*
+
 ## Project Structure
 
 - `server/`: Contains the Django backend code.
