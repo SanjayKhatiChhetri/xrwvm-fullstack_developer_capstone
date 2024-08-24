@@ -17,6 +17,7 @@ sentiment_analyzer_url = os.getenv(
 # def get_request(endpoint, **kwargs):
 # Add code for get requests to back end
 
+
 def get_request(endpoint, **kwargs):
     params = "&".join(f"{key}={value}" for key, value in kwargs.items())
     request_url = f"{backend_url}{endpoint}?{params}"
@@ -29,19 +30,18 @@ def get_request(endpoint, **kwargs):
     except requests.exceptions.RequestException as e:
         logger.error(f"Network exception occurred: {str(e)}")
         return None
-    except:
-        # If any error occurs
-        print("Network exception occurred")
 
 # def analyze_review_sentiments(text):
 # request_url = sentiment_analyzer_url+"analyze/"+text
 # Add code for retrieving sentiments
+
+
 def analyze_review_sentiments(text):
     request_url = f"{sentiment_analyzer_url}analyze/{text}"
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
-        response.raise_for_status()  # This will raise an exception for HTTP errors
+        response.raise_for_status()  # will raise an exception for HTTP errors
         return response.json()
     except requests.exceptions.RequestException as err:
         logger.error(f"Error analyzing sentiment: {err}")
@@ -49,11 +49,14 @@ def analyze_review_sentiments(text):
 
 # def post_review(data_dict):
 # Add code for posting review
+
+
 def post_review(data_dict):
     request_url = backend_url+"/insert_review"
     try:
-        response = requests.post(request_url,json=data_dict)
+        response = requests.post(request_url, json=data_dict)
         print(response.json())
         return response.json()
-    except:
-        print("Network exception occurred")
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Network exception occurred: {str(e)}")
+        return None
